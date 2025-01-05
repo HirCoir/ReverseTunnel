@@ -1,1 +1,2 @@
 sshtunnel
+prompt-toolkit
