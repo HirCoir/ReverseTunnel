@@ -81,7 +81,7 @@ El código fuente de **ReverseTunnel** está disponible en GitHub. ¡Siéntete l
 
 ---
 
-## 📜 Notas de la versión (v1.0)
+## 📜 Notas de la versión (v1.1)
 
 - **Lanzamiento inicial**: Primera versión estable de ReverseTunnel.
 - **Funcionalidades clave**: 
