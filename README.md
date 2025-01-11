@@ -24,6 +24,10 @@ Esta herramienta te permite exponer de manera segura y eficiente la API de **Oll
 - **Reconexión automática**: Si la conexión falla, ReverseTunnel intentará reconectarse automáticamente.
 - **Persistencia de configuración**: Guarda tus configuraciones para no tener que ingresarlas cada vez que uses la herramienta.
 - **Compatibilidad multiplataforma**: Funciona en cualquier entorno que admita Python y conexiones SSH.
+- **Auto-conexión**: Configura una conexión predeterminada para conectarte automáticamente al iniciar.
+- **Gestión de conexiones**: Edita, elimina y gestiona múltiples conexiones guardadas.
+- **Encriptación de datos**: Las contraseñas se almacenan de forma segura utilizando encriptación.
+- **Versión compilada para Windows**: Disponible en la sección de releases para usuarios de Windows.
 
 ---
 
@@ -37,6 +41,10 @@ Esta herramienta te permite exponer de manera segura y eficiente la API de **Oll
 
 ## 🚀 Instalación y uso
 
+### Usuarios de Windows
+Descarga la versión compilada desde la sección de [releases](https://github.com/HirCoir/ReverseTunnel/releases) del repositorio.
+
+### Usuarios de Python
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/HirCoir/ReverseTunnel.git
@@ -60,7 +68,7 @@ Esta herramienta te permite exponer de manera segura y eficiente la API de **Oll
 ## 🌟 ¿Por qué usar ReverseTunnel?
 
 - **Fácil de usar**: No necesitas ser un experto en redes para configurar y usar ReverseTunnel.
-- **Seguro**: Utiliza conexiones SSH para garantizar la seguridad de tus datos.
+- **Seguro**: Utiliza conexiones SSH y encriptación para garantizar la seguridad de tus datos.
 - **Versátil**: Compatible con múltiples entornos y herramientas de tunneling.
 - **Gratuito**: ¡No tienes que pagar nada para usar esta herramienta!
 
@@ -76,7 +84,14 @@ El código fuente de **ReverseTunnel** está disponible en GitHub. ¡Siéntete l
 ## 📜 Notas de la versión (v1.0)
 
 - **Lanzamiento inicial**: Primera versión estable de ReverseTunnel.
-- **Funcionalidades clave**: Configuración interactiva, reconexión automática y persistencia de configuraciones.
+- **Funcionalidades clave**: 
+  - Configuración interactiva
+  - Reconexión automática
+  - Persistencia de configuraciones
+  - Auto-conexión
+  - Gestión de múltiples conexiones
+  - Encriptación de datos sensibles
+  - Versión compilada para Windows
 - **Compatibilidad**: Funciona con Ollama, Serveo, Ngrok y otros servicios similares.
 
 ---
