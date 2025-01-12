@@ -1,2 +1,3 @@
 sshtunnel
 prompt-toolkit
+cryptography
