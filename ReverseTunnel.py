@@ -30,7 +30,7 @@ class TunnelManager:
                             self.tunnel.stop()
                         except:
                             pass
-                    
+
                     self.tunnel = SSHTunnelForwarder(
                         (self.config["vps_host"], self.config["ssh_port"]),
                         ssh_username=self.config["vps_user"],
@@ -86,7 +86,7 @@ class ConnectionManager:
     def _setup_encryption(self):
         """Setup encryption key or load existing one"""
         os.makedirs(self.config_dir, exist_ok=True)
-        
+
         if os.path.exists(self.key_file):
             with open(self.key_file, "rb") as f:
                 key = f.read()
@@ -101,7 +101,7 @@ class ConnectionManager:
             key = base64.urlsafe_b64encode(kdf.derive(b"ReverseTunnelSecretKey"))
             with open(self.key_file, "wb") as f:
                 f.write(key)
-        
+
         return Fernet(key)
 
     def _load_connections(self):
@@ -141,7 +141,7 @@ class ConnectionManager:
                 **data,
                 "vps_password": self.encrypt_password(data["vps_password"])
             }
-        
+
         with open(self.config_file, "w") as f:
             json.dump(encrypted_data, f, indent=4)
 
@@ -158,9 +158,9 @@ class ConnectionManager:
         try:
             print("\n--- Nueva Conexión ---")
             print("Presiona Ctrl+C en cualquier momento para volver al menú principal")
-            
+
             name = prompt("Nombre de la conexión: ")
-            
+
             while name in self.connections:
                 print("Este nombre ya existe. Por favor, elige otro.")
                 name = prompt("Nombre de la conexión: ")
@@ -196,13 +196,13 @@ class ConnectionManager:
         try:
             print("\n--- Editar Conexión ---")
             print("Presiona Ctrl+C en cualquier momento para volver al menú principal")
-            
+
             connection = self.select_connection()
             if not connection:
                 return
 
             old_name = next(name for name, conf in self.connections.items() if conf == connection)
-            
+
             try:
                 print(f"\nEditando conexión: {old_name}")
                 print("Deja en blanco para mantener el valor actual")
@@ -284,7 +284,7 @@ class ConnectionManager:
                     if self.settings["default_connection"] == name:
                         self.settings["default_connection"] = None
                         self._save_settings()
-                    
+
                     del self.connections[name]
                     self._save_connections()
                     print(f"\nConexión '{name}' eliminada exitosamente.")
@@ -309,7 +309,7 @@ class ConnectionManager:
 
                 print("\n--- Configurar Auto-conexión ---")
                 print("Selecciona la conexión predeterminada para auto-conexión:")
-                
+
                 connection = self.select_connection()
                 if connection:
                     name = next(name for name, conf in self.connections.items() if conf == connection)
@@ -331,14 +331,14 @@ class ConnectionManager:
             return
 
         tunnel_manager = TunnelManager(config)
-        
+
         def signal_handler(signum, frame):
             print("\nCerrando túnel...")
             tunnel_manager.stop()
-        
+
         # Register signal handler for graceful shutdown
         signal.signal(signal.SIGINT, signal_handler)
-        
+
         try:
             tunnel_manager.start()
         except KeyboardInterrupt:
@@ -357,15 +357,28 @@ class ConnectionManager:
             print(f"\nConectando automáticamente a '{self.settings['default_connection']}'...")
             self.create_tunnel(default_config)
 
+    def clear_cache(self):
+        """Clear the cache by deleting configuration files"""
+        if os.path.exists(self.config_file):
+            os.remove(self.config_file)
+        if os.path.exists(self.settings_file):
+            os.remove(self.settings_file)
+        if os.path.exists(self.key_file):
+            os.remove(self.key_file)
+        print("Caché limpiada.")
+
 def main():
     manager = ConnectionManager()
-    
+
+    # Clear cache before starting
+    manager.clear_cache()
+
     # Try auto-connect first
     manager.auto_connect()
-    
+
     print("\n🚀 ReverseTunnel - Gestor de Conexiones SSH")
     print("==========================================")
-    
+
     while True:
         print("\nOpciones:")
         print("1. Crear nueva conexión")
@@ -374,10 +387,10 @@ def main():
         print("4. Editar conexión")
         print(f"5. {'Desactivar' if manager.settings['auto_connect'] else 'Activar'} auto-conexión")
         print("6. Salir")
-        
+
         try:
             choice = prompt("\nSelecciona una opción (1-6): ")
-            
+
             if choice == "1":
                 manager.add_connection()
             elif choice == "2":
