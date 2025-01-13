@@ -3,7 +3,7 @@
 # 🚀 ReverseTunnel v1.0: Conecta tu API de Ollama de forma segura y sencilla
 
 ¡Estamos emocionados de anunciar el lanzamiento de **ReverseTunnel v1.0**! 🎉  
-Esta herramienta te permite exponer de manera segura y eficiente la API de **Ollama** desde un servidor remoto (Linux) a tu máquina local, o incluso a entornos como **Google Colab** o cualquier otro que admita conexiones SSH. ¡Y lo mejor de todo? ¡Es completamente **gratis**! 🆓
+Esta herramienta te permite exponer de manera segura y eficiente la API de **Ollama** desde un servidor remoto (Linux) a tu máquina local, o incluso a entornos Jupyter que admitan conexiones SSH. ¡Y lo mejor de todo? ¡Es completamente **gratis**! 🆓
 
 ---
 
